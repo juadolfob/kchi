@@ -32,21 +32,21 @@ export default function App() {
     setIsLoaded(true);
   }
 
-  async function fetchCountryDetails(country){
-      setitemInfoisLoaded(false);
-      var countryDetails = await fetch(" https://en.wikipedia.org/api/rest_v1/page/summary/" + country);
-      var countryDetailsJson = await countryDetails.json();
-      var countryDetailsExtractHtml = countryDetailsJson['extract_html']
-      setItemInfo(countryDetailsExtractHtml);
-      setitemInfoisLoaded(true);
-      setShowAlert(true);
+  async function fetchCountryDetails(country) {
+    setitemInfoisLoaded(false);
+    var countryDetails = await fetch(" https://en.wikipedia.org/api/rest_v1/page/summary/" + country);
+    var countryDetailsJson = await countryDetails.json();
+    var countryDetailsExtractHtml = countryDetailsJson['extract_html']
+    setItemInfo(countryDetailsExtractHtml);
+    setitemInfoisLoaded(true);
+    setShowAlert(true);
   }
 
   function modalHandler(languages) {
     setShowModal(true)
     setModal(
-      languages.map(item => {return (<div>{item}</div>)})
-      )
+      languages.map(item => { return (<div>{item}</div>) })
+    )
   }
 
   function modalClose() {
@@ -57,8 +57,7 @@ export default function App() {
   useEffect(fetchCountries, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <body class='App-body'>
         <div class="px-5">
           <Bootbox
             show={showAlert & itemInfoisLoaded & !showModal}
@@ -69,7 +68,7 @@ export default function App() {
           <Modal
             isOpen={showModal}
             contentLabel="Language Modal"
-            onRequestClose={  modalClose}
+            onRequestClose={modalClose}
             shouldCloseOnOverlayClick={true}
           >
             {modal}
@@ -104,7 +103,7 @@ export default function App() {
             </tbody>
           </Table>
         </div>
-      </header>
+      </body>
     </div>
   );
 }
